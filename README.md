@@ -1,6 +1,4 @@
-import os
-
-polished_readme = """# 🔍 Duplicate File Finder
+🔍 Duplicate File Finder
 
 A lightweight, production-ready Python utility designed to recursively scan directories, identify duplicate files via secure cryptographic hashing, and calculate recoverable disk real estate instantly. 
 
