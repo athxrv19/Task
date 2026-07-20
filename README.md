@@ -1,40 +1,32 @@
-🚀 Quick Start
-Prerequisites
-Python 3.6+
+import os
 
-No external dependencies or pip installs required. Uses purely native standard libraries (pathlib, hashlib).
+polished_readme = """# 🔍 Duplicate File Finder
 
-Running the Utility
-Save duplicate_finder.py to your working directory.
+A lightweight, production-ready Python utility designed to recursively scan directories, identify duplicate files via secure cryptographic hashing, and calculate recoverable disk real estate instantly. 
 
-Launch your terminal and execute:
+---
 
-Bash
-python duplicate_finder.py
-Enter the target directory path when prompted:
+## ✨ Key Features
 
-Plaintext
-Enter folder path: /Users/username/Downloads
-📊 Sample Output
-Plaintext
-==================================================
-Duplicate Files:
-/Users/username/Downloads/Presentation_Final.pdf
-/Users/username/Downloads/Archive/Backup_Pres.pdf
-Recoverable: 12451840 bytes
+* **Recursive Deep Scan:** Traverses complex folder structures seamlessly using Python's object-oriented `pathlib` framework.
+* **Low Memory Footprint:** Streams files incrementally in fixed **8 KB chunks**—safely handling multi-gigabyte files without memory spikes.
+* **Content-Based Verification:** Identifies duplication strictly by data signature (SHA-1) rather than fragile metrics like file name, extension, or timestamp.
+* **Human-Readable Reporting:** Generates a structured terminal breakdown grouping exact duplicates together, tracking isolated overhead, and presenting total savings in both Megabytes (MB) and bytes.
 
-==================================================
-Duplicate Files:
-/Users/username/Downloads/Photos/IMG_0492.RAW
-/Users/username/Downloads/Photos/Duplicates/Copy_IMG_0492.RAW
-/Users/username/Downloads/Export/Backup_IMG_0492.RAW
-Recoverable: 50331648 bytes
+---
 
-==================================================
-Total Recoverable Space: 59.87 MB (62783488 bytes)
-🛠️ Implementation Details
-Algorithm: SHA-1 (hashlib.sha1)
+## ⚙️ How It Works
 
-Chunk Optimization: 8192 bytes provides the optimal balance between I/O call frequency and memory page size matching.
-
-Dictionary Structuring: Utilizes .setdefault(h, []) to build an automated, collision-free grouping engine.
+```mermaid
+graph TD
+    A[Start: User Enters Path] --> B[Recursively Walk Directory]
+    B --> C{Is Item a File?}
+    C -- No --> B
+    C -- Yes --> D[Read File in 8KB Chunks]
+    D --> E[Compute SHA-1 Cryptographic Hash]
+    E --> F[Group File Path under Hash Key]
+    F --> G[Analyze Dictionary Values]
+    G --> H{Hash Has > 1 File?}
+    H -- No --> I[Skip: File is Unique]
+    H -- Yes --> J[Print Duplicate Paths & Calculate Recoverable Space]
+    J --> K[Output Final Cumulative MB Savings Summary]
